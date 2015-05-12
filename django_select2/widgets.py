@@ -201,7 +201,6 @@ class Select2Mixin(object):
             args.append(choices)
 
         s = text_type(super(Select2Mixin, self).render(*args))  # Thanks to @ouhouhsami Issue#1
-        s += self.media.render()
         final_attrs = self.build_attrs(attrs)
         id_ = final_attrs.get('id', None)
         s += self.render_js_code(id_, name, value, attrs, choices)
