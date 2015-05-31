@@ -55,16 +55,6 @@ if len(sys.argv) > 1 and 'sdist' == sys.argv[1]:
     minify(['static/django_select2/js/select2.js'], 'static/django_select2/js/select2.min.js', 'js')
     minify(['static/django_select2/js/heavy_data.js'], 'static/django_select2/js/heavy_data.min.js', 'js')
     minify(['static/django_select2/css/select2.css'], 'static/django_select2/css/select2.min.css', 'css')
-    minify(['static/django_select2/css/select2.css', 'static/django_select2/css/extra.css'],
-           'static/django_select2/css/all.min.css', 'css')
-    minify(['static/django_select2/css/select2.css', 'static/django_select2/css/select2-bootstrap.css'],
-           'static/django_select2/css/select2-bootstrapped.min.css', 'css')
-    minify(
-        [
-            'static/django_select2/css/select2.css',
-            'static/django_select2/css/extra.css',
-            'static/django_select2/css/select2-bootstrap.css'
-        ], 'static/django_select2/css/all-bootstrapped.min.css', 'css')
 
 
 class PyTest(Command):

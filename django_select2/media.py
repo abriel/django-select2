@@ -31,26 +31,9 @@ def get_select2_heavy_js_libs():
 
 def get_select2_css_libs(light=False):
     css_files = []
-    if BOOTSTRAP:
-        if DEBUG:
-            if light:
-                css_files = ('css/select2.css', 'css/select2-bootstrap.css', )
-            else:
-                css_files = ('css/select2.css', 'css/extra.css', 'css/select2-bootstrap.css')
-        else:
-            if light:
-                css_files = ('css/select2-bootstrapped.min.css',)
-            else:
-                css_files = ('css/all-bootstrapped.min.css',)
+    if DEBUG:
+        css_files = ('css/select2.css',)
     else:
-        if settings.configured and settings.DEBUG:
-            if light:
-                css_files = ('css/select2.css',)
-            else:
-                css_files = ('css/select2.css', 'css/extra.css')
-        else:
-            if light:
-                css_files = ('css/select2.min.css',)
-            else:
-                css_files = ('css/all.min.css',)
+        css_files = ('css/select2.min.css',)
+
     return map(lambda x: django_select2_static(x), css_files)
