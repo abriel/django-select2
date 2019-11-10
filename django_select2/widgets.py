@@ -13,6 +13,13 @@ from django import forms
 from django.core.urlresolvers import reverse
 from django.core.validators import EMPTY_VALUES
 from django.utils.datastructures import MultiValueDict
+
+# MergeDict has been removed in Django 1.9
+try:
+    from django.utils.datastructures import MergeDict
+except ImportError:
+    pass
+
 from django.utils.encoding import force_text
 from django.utils.safestring import mark_safe
 from django.utils.six import text_type
@@ -301,8 +308,16 @@ class MultipleSelect2HiddenInput(forms.TextInput):
         return mark_safe(s)
 
     def value_from_datadict(self, data, files, name):
+        '''
+            MergeDict has been removed in Django 1.9
+        '''
         if isinstance(data, MultiValueDict):
             return data.getlist(name)
+        try:
+            if isinstance(data, MergeDict):
+                return data.getlist(name)
+        except NameError:
+            pass
         return data.get(name, None)
 
     def _has_changed(self, initial, data):
